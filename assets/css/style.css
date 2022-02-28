@@ -1,3 +1,10 @@
+
+html {
+    min-height: 100%;
+}    
+body {
+     min-height: 100%;
+}
 /* header {
     border: solid greenyellow;
 } */
@@ -15,7 +22,7 @@ h1 {
     padding-top: 50px;
     text-align: center;
     font-size: 400%;
-    color: #070606;
+    color: #050505;
 
     
 }
@@ -69,7 +76,7 @@ img {
 }
 
 .footer {
-    padding: 15px 0;
+    padding: 10px 0;
     clear: both;
     font-size: 12px;
     color: #fff;
@@ -80,7 +87,7 @@ img {
 
 .footer,
 .push {
-    height: 50px;
+    height: 40px;
 }
 
 @font-face {
@@ -103,5 +110,6 @@ img {
     src: url(../css/fonts/aliens-cows/Alienscows-Bold-Trial.ttf);
 }
 
+*{border: 2px solid red}
 
 
