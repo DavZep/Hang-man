@@ -50,6 +50,7 @@ var userGuessDiv = document.getElementById("user-guesses");
         wordDiv.textContent = gameWordDashes
         totalGuessDiv.textContent = totalGuesses
         userGuessDiv.textContent = lettersGuessed.join("");
+        console.log(gameWord);
     }
 
 //creates dashes where it loops the gameWord (totalGuesses is the lenght here) 
@@ -115,8 +116,8 @@ document.onkeyup = function (event) {
         checkGameLost();
         //hides gameword after game won/lost 
         wordDiv.classList.add("hide");
-        //supposed to hide total guesses & user guesses but doesnt
-        // it only hides the num & letters weird
+        //***supposed to hide total guesses & user guesses but doesnt
+        // it only hides the num & letters weird**********
         totalGuessDiv.classList.add("hide");
         userGuessDiv.classList.add("hide");
     }
@@ -154,5 +155,4 @@ function reset() {
 }
 
 playGame();  //calling function playGame we created
-console.log(gameWord);
 
