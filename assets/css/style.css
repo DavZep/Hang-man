@@ -10,10 +10,10 @@ body {
 }
 
 h1 {
-    padding-top: 100px;
+    padding-top: 80px;
     text-align: center;
     font-size: 400%;
-    color: #050505;
+    color: brown;
 }
 
 h3 {
@@ -23,12 +23,18 @@ h3 {
     color: brown;
 }
 
-p {
+h5 {
     font-size: 200%;
     font-weight: 650;
     letter-spacing: 4px;
     color: brown;
     font-family: wordHollyFont;
+}
+
+.row {
+    margin: auto;
+    padding: 0%;
+    text-align: center;
 }
 
 .hide {
@@ -54,8 +60,12 @@ p {
 
 #message {
     margin-bottom: 4px;
+    font-size: 200%;
+    font-weight: 650;
     color: brown;
-   text-align: center;
+    text-align: center;
+    font-family: wordHollyFont;
+
 }
 
 #user-guesses {

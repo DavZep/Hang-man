@@ -20,18 +20,27 @@
         </h1>
     </header>
 
-    <div class="row" id="game-container">
-        <div>
-            <p id="message" style="font-family: wordHollyFont;">Turn off all cellphones please!</p>
+    <div id="game-container">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="row col-md-6">
+                <p id="message"></p>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div class="col-md-3"></div>
-        <div class="col-md-6" id="stats">
-            <h3 id="game-word" ></h3>
-            <p>Total guesses: <span id="total-guesses"></span></p>
-            <p>Guesses: <span id="user-guesses"></span></p>
-            <button class="resetBotton btn btn-primary" onclick="reset()">Re-Play!</button>
+        <div class="row" id="info">
+            <div class="col-md-3"></div>
+            <div class="col-md-6" id="stats">
+                <h3 id="game-word" ></h3>
+                <h5><span id="total-guesses"></span>: Guesses remaining</h5>
+                <h5><span id="user-guesses"></span>: Already guessed</h5>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div class="hint col-md-3">
+        <div class="row">
+            <div class="col-m--12">
+                <button class="btn btn-primary" onclick="reset()">Re-Play!</button>
+            </div>
         </div>
     </div>
 

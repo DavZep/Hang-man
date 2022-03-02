@@ -33,10 +33,10 @@ let wrongSound = new Audio("./assets/audio/wrong_answer.mp3");
 wrongSound.volume = 0.2;
 
 //variables that will be used to write to the HTML id's for each (grabs placeholder)
-var messageDiv = document.getElementById("message")
-var wordDiv = document.getElementById("game-word")
-var totalGuessDiv = document.getElementById("total-guesses")
-var userGuessDiv = document.getElementById("user-guesses")
+var messageDiv = document.getElementById("message");
+var wordDiv = document.getElementById("game-word");
+var totalGuessDiv = document.getElementById("total-guesses");
+var userGuessDiv = document.getElementById("user-guesses");
     
     function playGame() {
         messageDiv.textContent = ""
@@ -132,7 +132,7 @@ function checkGameWon() {
 //check if number of totalGuesses is less than or equal to zero to end(or else it goes on forever)
 function checkGameLost() {
     if (totalGuesses <= 0) {
-        messageDiv.textContent = 'Loser!...press Re-Play to try again. "' + gameWord + '" is the correct answer'
+        messageDiv.textContent = 'You Lost!...press Re-Play to try again. "' + gameWord + '" is the correct answer'
         wrongSound.play(); //plays sound when total guesses reaches zero
     }
 }
