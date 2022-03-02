@@ -51,7 +51,6 @@ var userGuessDiv = document.getElementById("user-guesses")
         totalGuessDiv.textContent = totalGuesses
         userGuessDiv.textContent = lettersGuessed.join("")
         console.log(gameWord)
-    
     }
 
 //creates dashes where it loops the gameWord (totalGuesses is the lenght here) 
@@ -68,11 +67,13 @@ document.onkeyup = function (event) {
     //and normalizes .toLowerCase incase its a capital letter ABC becomes abc
     var userKey = event.key.toLowerCase();
     messageDiv.textContent = ""
-    //This is a Condition which checks if list letterGuessed has the UserKey in it already
-    //*check if letter has already been used*
+
+    //Condition if theres any gameword dashes left (for checkGameWon)
 if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
     console.log(gameWordDashes)
     console.log(gameWordDashes.search("_") !== -1)
+    //This is a Condition which checks if list letterGuessed has the UserKey in it already
+    //*check if letter has already been used*
     if (lettersGuessed.indexOf(userKey) !== -1) {
         messageDiv.textContent = '"' + userKey + '" is already been picked'
     }else {
@@ -119,12 +120,11 @@ if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
     
 }
 }
-
+//checks if game is won by 
 function checkGameWon() {
     if (gameWordDashes === gameWord) {
         messageDiv.textContent = 'Winner! "' + gameWord + '" is the correct answer'
         correctSound.play();
-    
     }
 
 }
@@ -133,7 +133,6 @@ function checkGameLost() {
     if (totalGuesses <= 0) {
         messageDiv.textContent = 'Loser!... press Re-Play to try again "' + gameWord + '" is the correct answer'
         wrongSound.play();
-    
     }
 }
 
@@ -154,5 +153,4 @@ function reset() {
 playGame()   //calling function playGame we created
 console.log(gameWordDashes);
 console.log(gameWord);
-console.log(totalGuesses); //guesses remaining
 
