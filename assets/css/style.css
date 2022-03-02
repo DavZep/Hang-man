@@ -20,14 +20,14 @@ h3 {
     font-size: 200%;
     font-weight: 650;
     letter-spacing: 4px;
-    color: #4b4949;
+    color: brown;
 }
 
 p {
     font-size: 200%;
     font-weight: 650;
     letter-spacing: 4px;
-    color: #4b4949;
+    color: brown;
     font-family: wordHollyFont;
 }
 
@@ -41,11 +41,6 @@ p {
     text-align: center;
 }
 
-#stats {
-    padding: 6px;
-    margin: auto;
-}
-
 #game-word {
     font-size: 180%;
     letter-spacing: 6px;
@@ -55,7 +50,6 @@ p {
 #total-guesses {
     text-align: right;
     font-family: bulbfont;
-
 }
 
 #message {
