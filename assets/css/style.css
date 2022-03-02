@@ -1,78 +1,73 @@
-
 html {
     min-height: 100%;
 }    
-body {
-     min-height: 100%;
-}
-/* header {
-    border: solid greenyellow;
-} */
 
 body {
+    min-height: 100%;
     background: url("../images/movie_theatre_background.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    /* border: solid green; */
 }
 
-
-
 h1 {
-    padding-top: 50px;
+    padding-top: 100px;
     text-align: center;
     font-size: 400%;
     color: #050505;
-
-    
 }
 
+h3 {
+    font-size: 200%;
+    font-weight: 650;
+    letter-spacing: 4px;
+    color: #4b4949;
+}
 
-h3,
 p {
     font-size: 200%;
     font-weight: 650;
-    color: #f84b07;
+    letter-spacing: 4px;
+    color: #4b4949;
+    font-family: wordHollyFont;
+}
+
+.hide {
+    display: none;
+}
+
+#game-container {
+    margin: auto;
+    padding: 0%;
+    text-align: center;
+}
+
+#stats {
+    padding: 6px;
+    margin: auto;
+}
+
+#game-word {
+    font-size: 180%;
+    letter-spacing: 6px;
     font-family: bulbfont;
 }
 
-img {
-    /* border: solid orange; */
-    position: relative;
-    height: 200px;
-    width: 400px;
-}
-
-.dz {
-    font: 400 130px/0.8 'Great Vibes', Helvetica, sans-serif;
-    color: #fff;
-    text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
-  }
-
-
-
-#game-container {
-    text-align: center;
-}
-
-/* #stats {
-    border: solid rgb(10, 10, 2);
-} */
-
-
-#game-word {
-    font-size: 200%;
-    letter-spacing: 6px;
-}
-
 #total-guesses {
-    text-align: center;
-    /* border: solid white; */
+    text-align: right;
+    font-family: bulbfont;
+
 }
 
 #message {
+    margin-bottom: 4px;
+    color: brown;
    text-align: center;
-    /* border: solid red; */
+}
+
+#user-guesses {
+    margin-bottom: 0;
+    letter-spacing: 4px;
+    font-family: bulbfont;
 }
 
 .footer {
@@ -110,6 +105,5 @@ img {
     src: url(../css/fonts/aliens-cows/Alienscows-Bold-Trial.ttf);
 }
 
-*{border: 2px solid red}
 
 
