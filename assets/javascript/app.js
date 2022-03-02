@@ -50,7 +50,6 @@ var userGuessDiv = document.getElementById("user-guesses");
         wordDiv.textContent = gameWordDashes
         totalGuessDiv.textContent = totalGuesses
         userGuessDiv.textContent = lettersGuessed.join("");
-        console.log(gameWord);
     }
 
 //creates dashes where it loops the gameWord (totalGuesses is the lenght here) 
@@ -70,7 +69,6 @@ document.onkeyup = function (event) {
 
     //Condition if theres any gameword dashes left (for checkGameWon)
     if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
-    console.log(gameWordDashes);
     console.log(gameWordDashes.search("_") !== -1);
     //This is a Condition which checks if list letterGuessed has the UserKey in it already
     //*check if letter has already been used*
@@ -115,7 +113,10 @@ document.onkeyup = function (event) {
         console.log("hit")//debugg where in the code, condition wasnt hitting
         checkGameWon();
         checkGameLost();
+        //hides gameword after game won/lost 
         wordDiv.classList.add("hide");
+        //supposed to hide total guesses & user guesses but doesnt
+        // it only hides the num & letters weird
         totalGuessDiv.classList.add("hide");
         userGuessDiv.classList.add("hide");
     }
@@ -137,7 +138,7 @@ function checkGameLost() {
     }
 }
 
-//resets game...sets values to to begining of a game (not refresh page)
+//resets game...starts a clean slate to begin a game (not to be confused w/refresh page)
 function reset() {
     gameWord = ""
     totalGuesses = 0
@@ -153,6 +154,5 @@ function reset() {
 }
 
 playGame();  //calling function playGame we created
-console.log(gameWordDashes);
 console.log(gameWord);
 
