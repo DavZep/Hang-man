@@ -31,6 +31,17 @@ correctSound.volume = 0.3;
 //eliminated sound
 let wrongSound = new Audio("./assets/audio/wrong_answer.mp3");
 wrongSound.volume = 0.2;
+//when user enters incorrect key this sound will play
+let wrongKeySound = new Audio("./assets/audio/incorrect_sound_arcade_retro_8_bit.mp3");
+wrongKeySound.volume = 0.1;
+//when user enters correct key this sound will play
+let correctKeySound = new Audio("./assets/audio/lesser_vibes_Buttons.mp3");
+correctKeySound.volume = 0.3;
+//plays sound on reset click
+let resetSound = new Audio("./assets/audio/robot_power_up_surge.mp3");
+resetSound.volume = 0.3;
+
+
 
 //variables that will be used to write to the HTML id's for each (grabs placeholder)
 var messageDiv = document.getElementById("message");
@@ -52,6 +63,7 @@ var userGuessDiv = document.getElementById("user-guesses");
         userGuessDiv.textContent = lettersGuessed.join("");
         console.log(gameWord);
     }
+
 
 //creates dashes where it loops the gameWord (totalGuesses is the lenght here) 
 // and creates _'s for every letter ex: dog will look like  _ _ _
@@ -91,6 +103,7 @@ document.onkeyup = function (event) {
                 gameWordDashes[currentIndex] = userKey
                 gameWordDashes = gameWordDashes.join("");
                 checkGameWon()
+                correctKeySound.play();
             }
 
             //records/saves the letters press by the user to letterGuessed empty array to stop from multiple same guesses
@@ -107,6 +120,8 @@ document.onkeyup = function (event) {
             totalGuessDiv.textContent = totalGuesses
             messageDiv.textContent = '"' + userKey + '" is wrong... choose again!'
             checkGameLost();
+            wrongKeySound.play();
+
         }
     }
 // condition runs when gameWon or gameLost is triggered which hides elements
@@ -152,6 +167,7 @@ function reset() {
     totalGuessDiv.classList.remove("hide");
     userGuessDiv.classList.remove("hide");
     playGame();
+    resetSound.play()
 }
 
 playGame();  //calling function playGame we created
