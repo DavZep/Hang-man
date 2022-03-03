@@ -25,23 +25,21 @@ var totalGuesses = 0
 var lettersGuessed = []
 //word as dashes
 var gameWordDashes = ""
-//correct guess sound
+//correct word guess sound
 let correctSound = new Audio("./assets/audio/correct_answer.mp3");
-correctSound.volume = 0.3;
+correctSound.volume = 0.1;
 //eliminated sound
 let wrongSound = new Audio("./assets/audio/wrong_answer.mp3");
-wrongSound.volume = 0.2;
+wrongSound.volume = 0.1;
 //when user enters incorrect key this sound will play
 let wrongKeySound = new Audio("./assets/audio/incorrect_sound_arcade_retro_8_bit.mp3");
-wrongKeySound.volume = 0.1;
+wrongKeySound.volume = 0.05;
 //when user enters correct key this sound will play
 let correctKeySound = new Audio("./assets/audio/lesser_vibes_Buttons.mp3");
-correctKeySound.volume = 0.2;
+correctKeySound.volume = 0.1;
 //plays sound on reset click
 let resetSound = new Audio("./assets/audio/robot_power_up_surge.mp3");
-resetSound.volume = 0.2;
-
-
+resetSound.volume = 0.1;
 
 //variables that will be used to write to the HTML id's for each (grabs placeholder)
 var messageDiv = document.getElementById("message");
@@ -151,6 +149,7 @@ function checkGameLost() {
     if (totalGuesses <= 0) {
         messageDiv.textContent = 'You Lost!...press Re-Play to try again. "' + gameWord + '" is the correct answer'
         wrongSound.play(); //plays sound when total guesses reaches zero
+        
     }
 }
 
@@ -167,7 +166,8 @@ function reset() {
     totalGuessDiv.classList.remove("hide");
     userGuessDiv.classList.remove("hide");
     playGame();
-    resetSound.play()
+    resetSound.play();
+    
 }
 
 playGame();  //calling function playGame we created
