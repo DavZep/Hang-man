@@ -58,7 +58,7 @@ var userGuessDiv = document.getElementById("user-guesses");
         createDashes();
         wordDiv.textContent = gameWordDashes
         totalGuessDiv.textContent = totalGuesses
-        userGuessDiv.textContent = lettersGuessed.join("");
+        userGuessDiv.textContent = lettersGuessed.join("");//joing makes array to a string on everycharacter
         console.log(gameWord);
     }
 
@@ -76,7 +76,7 @@ document.onkeyup = function (event) {
         // creates variable of event(above) which will be userKey 
     //and normalizes .toLowerCase incase its a capital letter ABC becomes abc
     var userKey = event.key.toLowerCase();
-    messageDiv.textContent = ""
+    messageDiv.textContent = "" //reset to empty string to display value update
 
     //Condition if theres any gameword dashes left (for checkGameWon)
     if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
@@ -99,7 +99,7 @@ document.onkeyup = function (event) {
                 var currentIndex = indices[j]
                 gameWordDashes = gameWordDashes.split(""); //creates an array of the gameword (adds a comma after every letter/space as a string)
                 gameWordDashes[currentIndex] = userKey
-                gameWordDashes = gameWordDashes.join("");
+                gameWordDashes = gameWordDashes.join("");//converts array to string 
                 checkGameWon()
                 correctKeySound.play();
             }
@@ -107,14 +107,14 @@ document.onkeyup = function (event) {
             //records/saves the letters press by the user to letterGuessed empty array to stop from multiple same guesses
             lettersGuessed.push(userKey)
 
-            wordDiv.textContent = gameWordDashes//writing to elemnts on html the as they go 
+            wordDiv.textContent = gameWordDashes//writing to elemnts on html the as they go (redisplays variables that have been updated)
             totalGuessDiv.textContent = totalGuesses
             userGuessDiv.textContent = lettersGuessed.join("");
         
-        } else {
+        } else {//user key is not in the gameword (false)
             totalGuesses-- //subtracts 1 from the total number of guesses(which is the random word length)
             lettersGuessed.push(userKey); //records/saves the letters press by the user to letterGuessed empty array
-
+            userGuessDiv.textContent = lettersGuessed.join("");
             totalGuessDiv.textContent = totalGuesses
             messageDiv.textContent = '"' + userKey + '" is wrong... choose again!'
             checkGameLost();
@@ -123,8 +123,7 @@ document.onkeyup = function (event) {
         }
     }
 // condition runs when gameWon or gameLost is triggered which hides elements
-    } else {
-        console.log("hit")//debugg where in the code, condition wasnt hitting
+    } else {//if no underscores or guesses left
         checkGameWon();
         checkGameLost();
         //hides gameword after game won/lost 
@@ -146,7 +145,7 @@ function checkGameWon() {
 
 //check if number of totalGuesses is less than or equal to zero to end(or else it goes on forever)
 function checkGameLost() {
-    if (totalGuesses <= 0) {
+    if (totalGuesses <= 0 && gameWordDashes !== gameWord) {
         messageDiv.textContent = 'You Lost!...press Re-Play to try again. "' + gameWord + '" is the correct answer'
         wrongSound.play(); //plays sound when total guesses reaches zero
         
