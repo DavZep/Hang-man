@@ -36,10 +36,10 @@ let wrongKeySound = new Audio("./assets/audio/incorrect_sound_arcade_retro_8_bit
 wrongKeySound.volume = 0.1;
 //when user enters correct key this sound will play
 let correctKeySound = new Audio("./assets/audio/lesser_vibes_Buttons.mp3");
-correctKeySound.volume = 0.3;
+correctKeySound.volume = 0.2;
 //plays sound on reset click
 let resetSound = new Audio("./assets/audio/robot_power_up_surge.mp3");
-resetSound.volume = 0.3;
+resetSound.volume = 0.2;
 
 
 
