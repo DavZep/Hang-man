@@ -71,73 +71,94 @@ function createDashes() {
     }
 }
 
+function generateBtns() {
+    let buttonsHTML = "qwertyuiopasdfghjklzxcvbnm".split("").map(lettersGuessed =>
+        `
+            <button
+            class="btn btn-lg btn-danger m-2"
+            id="` + lettersGuessed +`"
+            onClick="handleGuess("` + lettersGuessed + `")"
+            >
+            ` + lettersGuessed + `
+            </button>
+        `).join("")
+    document.getElementById("keyboard").innerHTML = buttonsHTML;
+}
+
+generateBtns();
+
+
 // event listener where as soon as a user presses and LIFTs the key on document.onkeyup
-document.onkeyup = function (event) {
-        // creates variable of event(above) which will be userKey 
+document.addEventListener("click", function(event){
+    // creates variable of event(above) which will be userKey 
     //and normalizes .toLowerCase incase its a capital letter ABC becomes abc
-    var userKey = event.key.toLowerCase();
+    var userKey = event.target.id;
     messageDiv.textContent = "" //reset to empty string to display value update
 
-    //Condition if theres any gameword dashes left (for checkGameWon)
-    if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
-    console.log(gameWordDashes.search("_") !== -1);
-    //This is a Condition which checks if list letterGuessed has the UserKey in it already
-    //*check if letter has already been used*
-    if (lettersGuessed.indexOf(userKey) !== -1) {
-        messageDiv.textContent = '"' + userKey + '" has already been picked'
-    }else {
-        //loops through the indices and check how many times the userKey is found in gameWord
-        var indices =[];
-        for (var i = 0; i <gameWord.length; i++) {
-            if (gameWord[i] === userKey) indices.push(i);
-        }
+    if (event.target.className === "btn btn-lg btn-danger m-2") {
 
-        //condition that checks if userskey is acually in the gameWord
-        if (indices.length > 0) {
-            //loops through and joins/puts  the letter pressed and replaces _'s with a correct letter *only if its part of the word*
-            for (let j = 0; j < indices.length; j++) {
-                var currentIndex = indices[j]
-                gameWordDashes = gameWordDashes.split(""); //creates an array of the gameword (adds a comma after every letter/space as a string)
-                gameWordDashes[currentIndex] = userKey
-                gameWordDashes = gameWordDashes.join("");//converts array to string 
-                checkGameWon()
-                correctKeySound.play();
+
+        //Condition if theres any gameword dashes left (for checkGameWon)
+        if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
+        console.log(gameWordDashes.search("_") !== -1);
+        //This is a Condition which checks if list letterGuessed has the UserKey in it already
+        //*check if letter has already been used*
+        if (lettersGuessed.indexOf(userKey) !== -1) {
+            messageDiv.textContent = '"' + userKey + '" has already been picked"'
+        }else {
+            //loops through the indices and check how many times the userKey is found in gameWord
+            var indices =[];
+            for (var i = 0; i <gameWord.length; i++) {
+                if (gameWord[i] === userKey) indices.push(i);
             }
 
-            //records/saves the letters press by the user to letterGuessed empty array to stop from multiple same guesses
-            lettersGuessed.push(userKey)
+            //condition that checks if userskey is acually in the gameWord
+            if (indices.length > 0) {
+                //loops through and joins/puts  the letter pressed and replaces _'s with a correct letter *only if its part of the word*
+                for (let j = 0; j < indices.length; j++) {
+                    var currentIndex = indices[j]
+                    gameWordDashes = gameWordDashes.split(""); //creates an array of the gameword (adds a comma after every letter/space as a string)
+                    gameWordDashes[currentIndex] = userKey
+                    gameWordDashes = gameWordDashes.join("");//converts array to string 
+                    checkGameWon()
+                    correctKeySound.play();
+                }
 
-            wordDiv.textContent = gameWordDashes//writing to elemnts on html the as they go (redisplays variables that have been updated)
-            totalGuessDiv.textContent = totalGuesses
-            userGuessDiv.textContent = lettersGuessed.join("");
-        
-        } else {//user key is not in the gameword (false)
-            totalGuesses-- //subtracts 1 from the total number of guesses(which is the random word length)
-            lettersGuessed.push(userKey); //records/saves the letters press by the user to letterGuessed empty array
-            userGuessDiv.textContent = lettersGuessed.join("");
-            totalGuessDiv.textContent = totalGuesses
-            messageDiv.textContent = '"' + userKey + '" is wrong... choose again!'
+                //records/saves the letters press by the user to letterGuessed empty array to stop from multiple same guesses
+                lettersGuessed.push(userKey)
+
+                wordDiv.textContent = gameWordDashes//writing to elemnts on html the as they go (redisplays variables that have been updated)
+                totalGuessDiv.textContent = totalGuesses
+                userGuessDiv.textContent = lettersGuessed.join("");
+            
+            } else {//user key is not in the gameword (false)
+                totalGuesses-- //subtracts 1 from the total number of guesses(which is the random word length)
+                lettersGuessed.push(userKey); //records/saves the letters press by the user to letterGuessed empty array
+                userGuessDiv.textContent = lettersGuessed.join("");
+                totalGuessDiv.textContent = totalGuesses
+                messageDiv.textContent = '"' + userKey + '" is wrong... choose again!'
+                checkGameLost();
+                wrongKeySound.play();
+
+            }
+        }
+    // condition runs when gameWon or gameLost is triggered which hides elements
+        } else {//if no underscores or guesses left
+            checkGameWon();
             checkGameLost();
-            wrongKeySound.play();
-
+            //hides gameword after game won/lost 
+            wordDiv.classList.add("hide");
+            //***supposed to hide total guesses & user guesses but doesnt
+            // it only hides the num & letters weird**********
+            totalGuessDiv.classList.add("hide");
+            userGuessDiv.classList.add("hide");
         }
     }
-// condition runs when gameWon or gameLost is triggered which hides elements
-    } else {//if no underscores or guesses left
-        checkGameWon();
-        checkGameLost();
-        //hides gameword after game won/lost 
-        wordDiv.classList.add("hide");
-        //***supposed to hide total guesses & user guesses but doesnt
-        // it only hides the num & letters weird**********
-        totalGuessDiv.classList.add("hide");
-        userGuessDiv.classList.add("hide");
-    }
-}
+});
 //checks if game is won 
 function checkGameWon() {
     if (gameWordDashes === gameWord) {
-        messageDiv.textContent = 'Winner! "' + gameWord + '" is the correct answer'
+        messageDiv.textContent = 'Winner! Press re-Play to try again "' + gameWord + '" is the correct answer'
         correctSound.play();//plays sound when word is guessed
     }
 
@@ -152,8 +173,9 @@ function checkGameLost() {
     }
 }
 
+var rBtn = document.getElementById("replay");
 //resets game...starts a clean slate to begin a game (not to be confused w/refresh page)
-function reset() {
+rBtn.onclick = function reset() {
     gameWord = ""
     totalGuesses = 0
     lettersGuessed = []
