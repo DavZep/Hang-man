@@ -71,40 +71,34 @@ function createDashes() {
     }
 }
 
-function generateBtns() {
-    let buttonsHTML = "abcdefghijklmnopqrstuvwxyz".split("").map(lettersGuessed =>
-        `
-            <button
-            class="btn btn-lg btn-danger m-2"
-            id="` + lettersGuessed +`"
-            onClick="handleGuess("` + lettersGuessed + `")"
-            >
-            ` + lettersGuessed + `
-            </button>
-        `).join("")
-    document.getElementById("keyboard").innerHTML = buttonsHTML;
+function generateButtons() {
+    let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+      `
+        <button
+          class="btn m-2 btn-danger"
+          id='` + letter + `'
+        >
+          ` + letter + `
+        </button>
+      `).join('');
+  
+    document.getElementById('keyboard').innerHTML = buttonsHTML;
 }
-
-generateBtns();
-
-
 // event listener where as soon as a user presses and LIFTs the key on document.onkeyup
-document.addEventListener("click", function(event){
+document.addEventListener("click", function(event) {
+    if (event.target.className === "btn m-2 btn-danger") {
     // creates variable of event(above) which will be userKey 
     //and normalizes .toLowerCase incase its a capital letter ABC becomes abc
     var userKey = event.target.id;
     messageDiv.textContent = "" //reset to empty string to display value update
 
-    if (event.target.className === "btn btn-lg btn-danger m-2") {
-
-
-        //Condition if theres any gameword dashes left (for checkGameWon)
+    //Condition if theres any gameword dashes left (for checkGameWon)
         if (totalGuesses > 0 && gameWordDashes.search("_") !== -1) {
         console.log(gameWordDashes.search("_") !== -1);
         //This is a Condition which checks if list letterGuessed has the UserKey in it already
         //*check if letter has already been used*
         if (lettersGuessed.indexOf(userKey) !== -1) {
-            messageDiv.textContent = '"' + userKey + '" has already been picked"'
+            messageDiv.textContent = '"' + userKey + '" has already been picked'
         }else {
             //loops through the indices and check how many times the userKey is found in gameWord
             var indices =[];
@@ -153,12 +147,14 @@ document.addEventListener("click", function(event){
             totalGuessDiv.classList.add("hide");
             userGuessDiv.classList.add("hide");
         }
+    } if (event.target.id === "reset") {
+        reset()
     }
 });
 //checks if game is won 
 function checkGameWon() {
     if (gameWordDashes === gameWord) {
-        messageDiv.textContent = 'Winner! Press re-Play to try again "' + gameWord + '" is the correct answer'
+        messageDiv.textContent = 'Winner! "' + gameWord + '" is the correct answer'
         correctSound.play();//plays sound when word is guessed
     }
 
@@ -173,9 +169,8 @@ function checkGameLost() {
     }
 }
 
-var rBtn = document.getElementById("replay");
 //resets game...starts a clean slate to begin a game (not to be confused w/refresh page)
-rBtn.onclick = function reset() {
+function reset() {
     gameWord = ""
     totalGuesses = 0
     lettersGuessed = []
@@ -192,4 +187,6 @@ rBtn.onclick = function reset() {
 }
 
 playGame();  //calling function playGame we created
+generateButtons();
+
 
