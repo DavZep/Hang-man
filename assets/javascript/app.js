@@ -77,6 +77,7 @@ function generateButtons() {
         <button
           class="btn m-2 btn-danger"
           id='` + letter + `'
+          style="font-size: 20px"
         >
           ` + letter + `
         </button>
