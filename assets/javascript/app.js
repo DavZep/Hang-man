@@ -72,14 +72,14 @@ function createDashes() {
 }
 
 function generateButtons() {
-    let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
+    let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(lettersGuessed =>
       `
         <button
           class="btn m-2 btn-danger"
-          id='` + letter + `'
+          id='` + lettersGuessed + `'
           style="font-size: 20px"
         >
-          ` + letter + `
+          ` + lettersGuessed + `
         </button>
       `).join('');
   
